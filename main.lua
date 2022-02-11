@@ -71,7 +71,7 @@ local btnData = {
     x = xCentre,
     y = 400,
     onRelease = start,
-    label = "LessGooo",
+    label = "Convert",
     shape = "circle",
     fontSize = 60,
     fillColor = { default = {0.8, 0.1, 0.1}, over = {0.6, 0, 0} },
