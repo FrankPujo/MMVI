@@ -1,5 +1,18 @@
 local widget = require( "widget" )
 
+local xCentre = display.contentCenterX
+local yCentre = display.contentCenterY
+
+local bg = display.newRect( xCentre, yCentre, xCentre * 3, yCentre * 4 )
+bg:setFillColor( 0.5, 0.3, 0 )
+local bottom = display.newRoundedRect( xCentre, 800, 700, 800, 10 )
+bottom:setFillColor( 0.8, 0.4, 0.1, 0.4 )
+bottom:setStrokeColor( 0.3, 0.2, 0 )
+bottom.strokeWidth = 12
+local title = display.newText( "MMVI", xCentre, 0 )
+title.size = 100
+title:setFillColor( 0.2, 0.6, 1 )
+
 local function getValue( char )
     local value = 0
     if char == "I" then
@@ -41,26 +54,29 @@ local function romToNum( r_roman )
     return number
 end
 
-local input = native.newTextField( 300, 200, 400, 100 )
+local input = native.newTextField( xCentre, 160, 400, 100 )
 
-local list = display.newText( "", 400, 1000, 500, 400 )
+local list = display.newText( "", xCentre, 900, 580, 650 )
+list.size = 61
 
 local function start( event )
-    local number = romToNum( input.text )
-    list.text = input.text .. "  ---  " .. tostring(number) .. "\n" .. list.text
-    input.text = ""
+    if input.text ~= "" then
+        local number = romToNum( input.text )
+        list.text = string.upper(input.text) .. "   ---->   " .. tostring(number) .. "\n" .. list.text
+        input.text = ""
+    end
 end
 
 local btnData = {
-    x = 400,
-    y = 1080,
+    x = xCentre,
+    y = 400,
     onRelease = start,
-    label = "O",
+    label = "LessGooo",
     shape = "circle",
-    fontSize = 80,
-    fillColor = { default = {0.1, 0.1, 0.1}, over = {0.3, 0.3, 0.3} },
-    radius = 70,
-    labelColor = { default = { 1, 1, 0 } }
+    fontSize = 60,
+    fillColor = { default = {0.8, 0.1, 0.1}, over = {0.6, 0, 0} },
+    radius = 120,
+    labelColor = { default = { 1, 1, 1 } }
 }
 
 local btn = widget.newButton( btnData )
